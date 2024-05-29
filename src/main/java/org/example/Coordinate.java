@@ -4,34 +4,17 @@ import java.util.Objects;
 
 public class Coordinate {
 
-
     private int x;
     private int y;
-
     private int id;
     private boolean bomb;
-
     private int countBomb;
-
     private boolean marked;
-
     private boolean visible;
-
     private String type;
-    /*
-
-	кликд ор нот
-
-	и висибъл ор нот
-
-	както и бомба, празно или число;
-
-     */
-
 
     public Coordinate() {
     }
-
 
     public Coordinate(int x, int y, int id, boolean bomb, int countBomb, boolean marked, boolean visible, String type) {
         this.x = x;
