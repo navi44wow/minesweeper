@@ -11,12 +11,14 @@ public class Coordinate {
     private int countBomb;
     private boolean marked;
     private boolean visible;
+
+    private boolean clicked;
     private String type;
 
     public Coordinate() {
     }
 
-    public Coordinate(int x, int y, int id, boolean bomb, int countBomb, boolean marked, boolean visible, String type) {
+    public Coordinate(int x, int y, int id, boolean bomb, int countBomb, boolean marked, boolean visible, boolean clicked, String type) {
         this.x = x;
         this.y = y;
         this.id = id;
@@ -24,6 +26,7 @@ public class Coordinate {
         this.countBomb = countBomb;
         this.marked = marked;
         this.visible = visible;
+        this.clicked = clicked;
         this.type = type;
     }
 
@@ -83,6 +86,14 @@ public class Coordinate {
         this.visible = visible;
     }
 
+    public boolean isClicked() {
+        return clicked;
+    }
+
+    public void setClicked(boolean clicked) {
+        this.clicked = clicked;
+    }
+
     public String getType() {
         return type;
     }
@@ -91,18 +102,17 @@ public class Coordinate {
         this.type = type;
     }
 
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Coordinate that = (Coordinate) o;
-        return x == that.x && y == that.y && id == that.id && bomb == that.bomb && countBomb == that.countBomb && marked == that.marked && visible == that.visible && Objects.equals(type, that.type);
+        return x == that.x && y == that.y && id == that.id && bomb == that.bomb && countBomb == that.countBomb && marked == that.marked && visible == that.visible && clicked == that.clicked && Objects.equals(type, that.type);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(x, y, id, bomb, countBomb, marked, visible, type);
+        return Objects.hash(x, y, id, bomb, countBomb, marked, visible, clicked, type);
     }
 
     @Override
@@ -115,6 +125,7 @@ public class Coordinate {
                 ", countBomb=" + countBomb +
                 ", marked=" + marked +
                 ", visible=" + visible +
+                ", clicked=" + clicked +
                 ", type='" + type + '\'' +
                 '}';
     }

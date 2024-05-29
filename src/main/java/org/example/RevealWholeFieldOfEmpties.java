@@ -7,6 +7,7 @@ public class RevealWholeFieldOfEmpties {
 
     public static void revealWholeFieldOfEmpties(Coordinate coordinate, List<List<Coordinate>> matrix) {
         coordinate.setVisible(true);
+        coordinate.setClicked(true);
 
         int x = coordinate.getX();
         int y = coordinate.getY();
@@ -25,41 +26,49 @@ public class RevealWholeFieldOfEmpties {
                 if (xC == x - 1 && yC == y && current.getType().equals("E")
                         && !current.isVisible()) {
                     current.setVisible(true);
+                    current.setClicked(true);
                     otherToBeRevealed.add(current);
                 }
                 if (xC == x + 1 && yC == y && current.getType().equals("E")
                         && !current.isVisible()) {
                     current.setVisible(true);
+                    current.setClicked(true);
                     otherToBeRevealed.add(current);
                 }
                 if (xC == x && yC == y - 1 && current.getType().equals("E")
                         && !current.isVisible()) {
                     current.setVisible(true);
+                    current.setClicked(true);
                     otherToBeRevealed.add(current);
                 }
                 if (xC == x && yC == y + 1 && current.getType().equals("E")
                         && !current.isVisible()) {
                     current.setVisible(true);
+                    current.setClicked(true);
                     otherToBeRevealed.add(current);
                 }
                 if (xC == x - 1 && yC == y - 1 && current.getType().equals("E")
                         && !current.isVisible()) {
                     current.setVisible(true);
+                    current.setClicked(true);
                     otherToBeRevealed.add(current);
                 }
                 if (xC == x + 1 && yC == y + 1 && current.getType().equals("E")
                         && !current.isVisible()) {
                     current.setVisible(true);
+                    current.setClicked(true);
                     otherToBeRevealed.add(current);
                 }
                 if (xC == x + 1 && yC == y - 1 && current.getType().equals("E")
                         && !current.isVisible()) {
                     current.setVisible(true);
+                    current.setClicked(true);
                     otherToBeRevealed.add(current);
                 }
                 if (xC == x - 1 && yC == y + 1 && current.getType().equals("E")
                         && !current.isVisible()) {
                     current.setVisible(true);
+                    current.setClicked(true);
                     otherToBeRevealed.add(current);
                 }
                 /*
@@ -69,34 +78,42 @@ public class RevealWholeFieldOfEmpties {
                 if (xC == x - 1 && yC == y && !current.getType().equals("B") && !current.getType().equals("E")
                         && !current.isVisible()) {
                     current.setVisible(true);
+                    current.setClicked(true);
                 }
                 if (xC == x + 1 && yC == y && !current.getType().equals("B") && !current.getType().equals("E")
                         && !current.isVisible()) {
                     current.setVisible(true);
+                    current.setClicked(true);
                 }
                 if (xC == x && yC == y - 1 && !current.getType().equals("B") && !current.getType().equals("E")
                         && !current.isVisible()) {
                     current.setVisible(true);
+                    current.setClicked(true);
                 }
                 if (xC == x && yC == y + 1 && !current.getType().equals("B") && !current.getType().equals("E")
                         && !current.isVisible()) {
                     current.setVisible(true);
+                    current.setClicked(true);
                 }
                 if (xC == x - 1 && yC == y + 1 && !current.getType().equals("B") && !current.getType().equals("E")
                         && !current.isVisible()) {
                     current.setVisible(true);
+                    current.setClicked(true);
                 }
                 if (xC == x + 1 && yC == y - 1 && !current.getType().equals("B") && !current.getType().equals("E")
                         && !current.isVisible()) {
                     current.setVisible(true);
+                    current.setClicked(true);
                 }
                 if (xC == x - 1 && yC == y - 1 && !current.getType().equals("B") && !current.getType().equals("E")
                         && !current.isVisible()) {
                     current.setVisible(true);
+                    current.setClicked(true);
                 }
                 if (xC == x + 1 && yC == y + 1 && !current.getType().equals("B") && !current.getType().equals("E")
                         && !current.isVisible()) {
                     current.setVisible(true);
+                    current.setClicked(true);
                 }
             }
         }

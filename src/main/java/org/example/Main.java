@@ -65,23 +65,20 @@ public class Main {
             System.out.println("use number between 0 and 479 to make a field visible(" +
                     "only if you are sure that it is not a bomb ;) );");
             System.out.println("use number between 0 and 479 followed by letter b as in" +
-                    "the example - 470b to mark a field as bomb;");
-            System.out.println("use number between 0 and 479 followed by letter u as in" +
-                    "the example - 470u to unmark a field as bomb;");
-
+                    "the example - 470b to mark or unmark a field as bomb;");
             do {
                 //here we start filling the matrix, or sweeping the mines:
                 String n = scanner.nextLine();
                 int b = 0;
                 int N = 0;
-                String BMarked = null;
+                String BMarked;
 
                 //this try catch block defend us from wrong input:
                 try {
                     char bMarked = n.charAt(n.length() - 1);
                     BMarked = String.valueOf(bMarked);
 
-                    if (BMarked.equals("b") || BMarked.equals("u")) {
+                    if (BMarked.equals("b")) {
                         String bombID = n.substring(0, n.length() - 1);
                         b = 1;
                         N = Integer.parseInt(bombID);
@@ -106,25 +103,29 @@ public class Main {
                                 x = 1;
                                 System.out.println("Game over");
                                 break;
-                            } else if (!coordinate.isBomb() && b == 1 && !coordinate.isVisible()) {
+                            } else if (b == 1 && !coordinate.isVisible()) {
                                 //if marked as bomb, but is not, we do:
-                                coordinate.setMarked(true);
-                                coordinate.setVisible(true);
-                            } else if (coordinate.isBomb() && b == 1 && !coordinate.isVisible()) {
                                 //if it is bomb, and you mark it, then you do:
                                 coordinate.setMarked(true);
                                 coordinate.setVisible(true);
-                            } else if (Objects.equals(BMarked, "u") && coordinate.isMarked()) {
+                            } else if (b == 1 && coordinate.isVisible() && !coordinate.isClicked()) {
+                               /*
+                               here you do the unmarking
+                                */
+                                coordinate.setMarked(false);
+                                coordinate.setVisible(false);
+                            } else if (coordinate.isBomb() && b == 1 && coordinate.isMarked()) {
                                 //you do this, if you unmark;
                                 coordinate.setMarked(false);
                                 coordinate.setVisible(false);
-                            } else if (coordinate.getType().equals("E")) {
+                            } else if (b == 0 && coordinate.getType().equals("E") && !coordinate.isMarked()) {
                                 //here is the logic for clicked field, that is empty:
                                 RevealWholeFieldOfEmpties.revealWholeFieldOfEmpties(coordinate, newMatrix);
-                            } else {
+                            } else if (b == 0 && !coordinate.isMarked()) {
                                 //here if it is not a bomb it is unneeded to be marked because it is
                                 //field that is empty or containing a number of bombs:
                                 coordinate.setVisible(true);
+                                coordinate.setClicked(true);
                             }
                         }
                     }

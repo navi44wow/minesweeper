@@ -100,11 +100,12 @@ public class CreatingInitialMatrix {
             }
         }
 
-        //setting the types,  isMarked and isVisible of the coordinates:
+        //setting the types,  isMarked, isVisible and isClicked of the coordinates:
         for (List<Coordinate> temp : matrix) {
             for (Coordinate coordinate : temp) {
                 coordinate.setVisible(false);
                 coordinate.setMarked(false);
+                coordinate.setClicked(false);
 
                 int countB = coordinate.getCountBomb();
                 String countBS = String.valueOf(countB);
