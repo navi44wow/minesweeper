@@ -49,6 +49,8 @@ public class Main {
 
             //initial print of the matrix with ID values:
             System.out.println("initial matrix: ");
+            System.out.println("initial count of mines: 99 ");
+
             for (List<Coordinate> temp : newMatrix) {
                 for (Coordinate coordinate : temp) {
                     String id = String.valueOf(coordinate.getId());
@@ -61,7 +63,8 @@ public class Main {
                 System.out.println("_".repeat(Math.max(0, 180)));
             }
             System.out.println("please start sweeping the mines:) ");
-            System.out.println("use number between 0 and 479 to make a field visible;");
+            System.out.println("use number between 0 and 479 to make a field visible(" +
+                    "only if you are sure that it is not a bomb ;) );");
             System.out.println("use number between 0 and 479 followed by letter b as in" +
                     "the example - 470b to mark a field as bomb;");
             System.out.println("use number between 0 and 479 followed by letter u as in" +
@@ -138,9 +141,31 @@ public class Main {
                 if (y == 1) {
                     break;
                 }
+
+                //Lets count the bombs after this input:
+                int countMarkedAsBombs = 0;
+                for (List<Coordinate> temp : newMatrix) {
+                    for (Coordinate coordinate : temp) {
+                        if (coordinate.isMarked()) {
+                            countMarkedAsBombs++;
+                        }
+                    }
+                }
+
+                int remainingBombs;
+                //here, if we have marked more than 99 bombs, we want to print 0, which are te number of bombs remaining to be marked
+                //and we do not want to print a negative number;
+                if (countMarkedAsBombs > 99) {
+                    remainingBombs = 0;
+                } else {
+                    remainingBombs = 99 - countMarkedAsBombs;
+                }
+
+
                 //after performing some of the above operations(depending on our input), we print
                 //the temporary matrix, and ask the user to make next input:
                 System.out.println("the current matrix: ");
+                System.out.println("the remaining mines: " + remainingBombs);
                 for (List<Coordinate> temp : newMatrix) {
                     for (Coordinate coordinate : temp) {
                         String id = String.valueOf(coordinate.getId());
