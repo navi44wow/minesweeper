@@ -56,11 +56,10 @@ public class Main {
                     String id = String.valueOf(coordinate.getId());
                     int len = id.length();
                     int xy = 3 - len;
-                    System.out.print("|" + " ".repeat(Math.max(0, xy)) + coordinate.getId() + " " + " ");
+                    System.out.print("|" + " ".repeat(Math.max(0, xy)) + coordinate.getId());
                 }
                 System.out.print("|");
                 System.out.println();
-                System.out.println("_".repeat(Math.max(0, 180)));
             }
             System.out.println("please start sweeping the mines:) ");
             System.out.println("use number between 0 and 479 to make a field visible(" +
@@ -172,21 +171,20 @@ public class Main {
                         int xy = 3 - id.length();
                         if (coordinate.isVisible() && coordinate.isMarked()) {
                             xy = 3;
-                            System.out.print("|" + " ".repeat(xy) + " " + "B");
+                            System.out.print("|" + " ".repeat(xy - 1) + "B");
                         } else if (coordinate.isVisible() && !coordinate.isMarked()) {
                             xy = 3;
                             if (coordinate.getType().equals("E")) {
-                                System.out.print("|" + " ".repeat(xy) + "  ");
+                                System.out.print("|" + " ".repeat(xy));
                             } else {
-                                System.out.print("|" + " ".repeat(xy) + " " + coordinate.getType());
+                                System.out.print("|" + " ".repeat(xy - 1) + coordinate.getType());
                             }
                         } else {
-                            System.out.print("|" + " ".repeat(Math.max(0, xy)) + coordinate.getId() + " " + " ");
+                            System.out.print("|" + " ".repeat(Math.max(0, xy)) + coordinate.getId());
                         }
                     }
                     System.out.print("|");
                     System.out.println();
-                    System.out.println("_".repeat(Math.max(0, 180)));
                 }
                 System.out.println("please continue sweeping the mines:) ");
 
