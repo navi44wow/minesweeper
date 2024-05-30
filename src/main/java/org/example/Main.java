@@ -75,9 +75,9 @@ public class Main {
 
                 //this try catch block defend us from wrong input:
                 try {
-                    //here if the user enters a number containing the . or, , he will be
-                    //advised to make proper input:
-                    if (n.contains(".") || n.contains(",")) {
+                    //here we use regular expression in order to validate that the input will be
+                    //either a number between 0-479 or the same ,followed by letter b:
+                    if (!n.matches("[0-9b]*")) {
                         throw new Exception();
                     }
 
@@ -92,7 +92,7 @@ public class Main {
                         N = Integer.parseInt(n);
                     }
                 } catch (Exception e) {
-                    System.out.println("please make valid input between 0 and 479");
+                    System.out.println("please make valid input between 0-479 or 0b-479b(if you want to mark/unmark a bomb)");
                 }
 
                 //we use these variables to help us break from nested loops:
