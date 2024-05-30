@@ -75,6 +75,12 @@ public class Main {
 
                 //this try catch block defend us from wrong input:
                 try {
+                    //here if the user enters a number containing the . or, , he will be
+                    //advised to make proper input:
+                    if (n.contains(".") || n.contains(",")) {
+                        throw new Exception();
+                    }
+
                     char bMarked = n.charAt(n.length() - 1);
                     BMarked = String.valueOf(bMarked);
 
