@@ -177,17 +177,20 @@ public class Main {
                         String id = String.valueOf(coordinate.getId());
                         int xy = 3 - id.length();
                         if (coordinate.isVisible() && coordinate.isMarked()) {
-                            xy = 3;
-                            System.out.print("|" + " ".repeat(xy - 1) + "B");
+                            System.out.print("|" + " " + "B" + " ");
                         } else if (coordinate.isVisible() && !coordinate.isMarked()) {
                             xy = 3;
                             if (coordinate.getType().equals("E")) {
                                 System.out.print("|" + " ".repeat(xy));
                             } else {
-                                System.out.print("|" + " ".repeat(xy - 1) + coordinate.getType());
+                                System.out.print("|" + " " + coordinate.getType() + " ");
                             }
                         } else {
-                            System.out.print("|" + " ".repeat(Math.max(0, xy)) + coordinate.getId());
+                            if (coordinate.getId() <= 8) {
+                                System.out.print("|" + " ".repeat(Math.max(0, xy - 1)) + "_" + coordinate.getId());
+                            } else {
+                                System.out.print("|" + " ".repeat(Math.max(0, xy)) + coordinate.getId());
+                            }
                         }
                     }
                     System.out.print("|");
