@@ -164,14 +164,11 @@ public class Main {
                     }
                 }
 
-                int remainingBombs;
-                //here, if we have marked more than 99 bombs, we want to print 0, which are te number of bombs remaining to be marked
-                //and we do not want to print a negative number;
-                if (countMarkedAsBombs > 99) {
-                    remainingBombs = 0;
-                } else {
-                    remainingBombs = 99 - countMarkedAsBombs;
-                }
+
+                //here, if we have marked more than 99 bombs, we want to print 0, which are te number of bombs remaining to be marked.
+                // we print a negative number in case that more than the needed 99 bombs are marked - this is a hint that something that has been
+                //marked as bomb is not a bomb actually;
+                int remainingBombs = 99 - countMarkedAsBombs;
 
 
                 //after performing some of the above operations(depending on our input), we print
