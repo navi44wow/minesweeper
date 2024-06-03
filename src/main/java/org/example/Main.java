@@ -3,6 +3,8 @@ package org.example;
 
 import java.io.*;
 
+import java.sql.Timestamp;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Objects;
 import java.util.Scanner;
@@ -17,6 +19,10 @@ public class Main {
         String line = null;
 
         do {
+
+            // create Timestamp to mark the start of solving the game:
+            Timestamp currentTimestamp = getTimestamp();
+
             //creating the matrix:
             List<List<Coordinate>> newMatrix = CreatingInitialMatrix.creatingInitialMatrix();
 
@@ -36,7 +42,7 @@ public class Main {
                     sb.append(s);
                 }
                 sb.append("|");
-                sb.append("\n");
+            //    sb.append("\n");
             }
 
             try {
@@ -210,6 +216,13 @@ public class Main {
                 //if the check pass - we print congrats, we break from the current loop, and we are go in the outer one:
                 if (countVisible == 381) {
                     System.out.println("Congrats, you have won!");
+                    Timestamp currentTimestamp1 = getTimestamp();
+
+                    long diff = currentTimestamp1.getTime() - currentTimestamp.getTime();
+
+                    float difSec = (float) diff / 1000;
+                    System.out.println("the time that you needed to solve it in sec: " + difSec);
+
                     break;
                 }
             } while (!Objects.equals(line, "n"));
@@ -220,5 +233,14 @@ public class Main {
                 break;
             }
         } while (!line.equals("end"));
+    }
+
+
+    private static java.sql.Timestamp getTimestamp() {
+        Calendar calendar = Calendar.getInstance();
+
+        java.util.Date now = calendar.getTime();
+
+        return new Timestamp(now.getTime());
     }
 }
