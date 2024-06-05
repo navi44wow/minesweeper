@@ -20,105 +20,29 @@ public class RevealWholeFieldOfEmpties {
 
                 /*
                 here we check in all 8 directions to see if the surrounding fields are also empty;
-                if they are empty, we make them visible, and add them to otherToBeReveal list:
-                 */
-
-                if (xC == x - 1 && yC == y && current.getType().equals("E")
-                        && !current.isVisible()) {
-                    current.setVisible(true);
-                    current.setClicked(true);
-                    otherToBeRevealed.add(current);
-                }
-                if (xC == x + 1 && yC == y && current.getType().equals("E")
-                        && !current.isVisible()) {
-                    current.setVisible(true);
-                    current.setClicked(true);
-                    otherToBeRevealed.add(current);
-                }
-                if (xC == x && yC == y - 1 && current.getType().equals("E")
-                        && !current.isVisible()) {
-                    current.setVisible(true);
-                    current.setClicked(true);
-                    otherToBeRevealed.add(current);
-                }
-                if (xC == x && yC == y + 1 && current.getType().equals("E")
-                        && !current.isVisible()) {
-                    current.setVisible(true);
-                    current.setClicked(true);
-                    otherToBeRevealed.add(current);
-                }
-                if (xC == x - 1 && yC == y - 1 && current.getType().equals("E")
-                        && !current.isVisible()) {
-                    current.setVisible(true);
-                    current.setClicked(true);
-                    otherToBeRevealed.add(current);
-                }
-                if (xC == x + 1 && yC == y + 1 && current.getType().equals("E")
-                        && !current.isVisible()) {
-                    current.setVisible(true);
-                    current.setClicked(true);
-                    otherToBeRevealed.add(current);
-                }
-                if (xC == x + 1 && yC == y - 1 && current.getType().equals("E")
-                        && !current.isVisible()) {
-                    current.setVisible(true);
-                    current.setClicked(true);
-                    otherToBeRevealed.add(current);
-                }
-                if (xC == x - 1 && yC == y + 1 && current.getType().equals("E")
-                        && !current.isVisible()) {
-                    current.setVisible(true);
-                    current.setClicked(true);
-                    otherToBeRevealed.add(current);
-                }
-                /*
-                   here we check in all 8 directions to see if the surrounding fields are NOT empty;
+                if they are empty, we make them visible, and add them to otherToBeReveal list;
                 if they are NOT empty, we make them visible,but we do not add them to otherToBeReveal list:
                  */
-                if (xC == x - 1 && yC == y && !current.getType().equals("B") && !current.getType().equals("E")
-                        && !current.isVisible()) {
-                    current.setVisible(true);
-                    current.setClicked(true);
-                }
-                if (xC == x + 1 && yC == y && !current.getType().equals("B") && !current.getType().equals("E")
-                        && !current.isVisible()) {
-                    current.setVisible(true);
-                    current.setClicked(true);
-                }
-                if (xC == x && yC == y - 1 && !current.getType().equals("B") && !current.getType().equals("E")
-                        && !current.isVisible()) {
-                    current.setVisible(true);
-                    current.setClicked(true);
-                }
-                if (xC == x && yC == y + 1 && !current.getType().equals("B") && !current.getType().equals("E")
-                        && !current.isVisible()) {
-                    current.setVisible(true);
-                    current.setClicked(true);
-                }
-                if (xC == x - 1 && yC == y + 1 && !current.getType().equals("B") && !current.getType().equals("E")
-                        && !current.isVisible()) {
-                    current.setVisible(true);
-                    current.setClicked(true);
-                }
-                if (xC == x + 1 && yC == y - 1 && !current.getType().equals("B") && !current.getType().equals("E")
-                        && !current.isVisible()) {
-                    current.setVisible(true);
-                    current.setClicked(true);
-                }
-                if (xC == x - 1 && yC == y - 1 && !current.getType().equals("B") && !current.getType().equals("E")
-                        && !current.isVisible()) {
-                    current.setVisible(true);
-                    current.setClicked(true);
-                }
-                if (xC == x + 1 && yC == y + 1 && !current.getType().equals("B") && !current.getType().equals("E")
-                        && !current.isVisible()) {
-                    current.setVisible(true);
-                    current.setClicked(true);
+
+                for (int r = x - 1; r <= x + 1; r++) {
+                    for (int c = y - 1; c <= y + 1; c++) {
+                        if (xC == r && yC == c && !current.isVisible()) {
+                            if (current.getType().equals("E")) {
+                                current.setVisible(true);
+                                current.setClicked(true);
+                                otherToBeRevealed.add(current);
+                            } else if (!current.getType().equals("B") && !current.getType().equals("E")) {
+                                current.setVisible(true);
+                                current.setClicked(true);
+                            }
+                        }
+                    }
                 }
             }
         }
         //here we use recursion, to do the above logic, to all the elements of the orderToBeRevealedList:
-        for (Coordinate temp : otherToBeRevealed) {
+        for (
+                Coordinate temp : otherToBeRevealed) {
             revealWholeFieldOfEmpties(temp, matrix);
         }
     }
