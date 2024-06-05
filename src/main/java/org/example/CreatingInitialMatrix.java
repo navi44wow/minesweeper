@@ -68,31 +68,15 @@ public class CreatingInitialMatrix {
                 int x = coordinate.getX();
                 int y = coordinate.getY();
                 int cBombs = 0;
-                for (Coordinate linearC : coordinates) {
-                    if (linearC.isBomb()) {
-                        if (linearC.getX() == x + 1 && linearC.getY() == y + 1) {
-                            cBombs += 1;
-                        }
-                        if (linearC.getX() == x - 1 && linearC.getY() == y + 1) {
-                            cBombs += 1;
-                        }
-                        if (linearC.getX() == x + 1 && linearC.getY() == y - 1) {
-                            cBombs += 1;
-                        }
-                        if (linearC.getX() == x - 1 && linearC.getY() == y - 1) {
-                            cBombs += 1;
-                        }
-                        if (linearC.getX() == x + 1 && linearC.getY() == y) {
-                            cBombs += 1;
-                        }
-                        if (linearC.getX() == x - 1 && linearC.getY() == y) {
-                            cBombs += 1;
-                        }
-                        if (linearC.getX() == x && linearC.getY() == y + 1) {
-                            cBombs += 1;
-                        }
-                        if (linearC.getX() == x && linearC.getY() == y - 1) {
-                            cBombs += 1;
+
+                for (int r = x - 1; r <= x + 1; r++) {
+                    for (int c = y - 1; c <= y + 1; c++) {
+                        for (Coordinate linearC : coordinates) {
+                            if (linearC.isBomb()) {
+                                if (linearC.getX() == r && linearC.getY() == c) {
+                                    cBombs += 1;
+                                }
+                            }
                         }
                     }
                 }
