@@ -12,6 +12,30 @@ public class CreatingInitialMatrix {
         List<Coordinate> coordinates = new ArrayList<>();
 
         //filling the "coordinates" of the coordinates:
+        fillCoordinatesXY(coordinates);
+
+        //filling the IDs of the coordinates:
+        fillIDsOfFields(coordinates);
+
+        //random generating the bombs:
+        //using set to avoid duplicate values:
+        randomGeneratingBombs(coordinates);
+
+        //creating matrix and filling it with the linear list coordinates:
+        List<List<Coordinate>> matrix = creatingMatrixAndFillingWithAboveData(coordinates);
+
+        //counting and filling the number of bombs on a coordinates that are not bombs:
+        //in four directions and four diagonal directions, total count of bombs around a number can be <=8;
+
+        fillingCountOfBombsInFields(coordinates, matrix);
+
+        //setting the types,  isMarked, isVisible and isClicked of the coordinates:
+        settingOtherDataOfFields(matrix);
+        return matrix;
+    }
+
+
+    private static void fillCoordinatesXY(List<Coordinate> coordinates) {
         for (int x = 0; x < 16; x++) {
             for (int y = 0; y < 30; y++) {
                 Coordinate coordinate = new Coordinate();
@@ -20,16 +44,15 @@ public class CreatingInitialMatrix {
                 coordinates.add(coordinate);
             }
         }
+    }
 
-
-        //filling the IDs of the coordinates:
+    private static void fillIDsOfFields(List<Coordinate> coordinates) {
         for (int i = 0; i < coordinates.size(); i++) {
             coordinates.get(i).setId(i);
         }
+    }
 
-
-        //random generating the bombs:
-        //using set to avoid duplicate values:
+    private static void randomGeneratingBombs(List<Coordinate> coordinates) {
         TreeSet<Integer> bombs = new TreeSet<>();
 
         while (bombs.size() < 99) {
@@ -42,8 +65,9 @@ public class CreatingInitialMatrix {
                 coordinate.setBomb(true);
             }
         }
+    }
 
-        //creating matrix and filling it with the linear list coordinates:
+    private static List<List<Coordinate>> creatingMatrixAndFillingWithAboveData(List<Coordinate> coordinates) {
         List<List<Coordinate>> matrix = new ArrayList<>();
 
         for (int x = 0; x < 16; x++) {
@@ -59,10 +83,10 @@ public class CreatingInitialMatrix {
             }
             matrix.add(temp);
         }
+        return matrix;
+    }
 
-        //counting and filling the number of bombs on a coordinates that are not bombs:
-        //in four directions and four diagonal directions, total count of bombs around a number can be <=8;
-
+    private static void fillingCountOfBombsInFields(List<Coordinate> coordinates, List<List<Coordinate>> matrix) {
         for (List<Coordinate> temp : matrix) {
             for (Coordinate coordinate : temp) {
                 int x = coordinate.getX();
@@ -83,8 +107,9 @@ public class CreatingInitialMatrix {
                 coordinate.setCountBomb(cBombs);
             }
         }
+    }
 
-        //setting the types,  isMarked, isVisible and isClicked of the coordinates:
+    private static void settingOtherDataOfFields(List<List<Coordinate>> matrix) {
         for (List<Coordinate> temp : matrix) {
             for (Coordinate coordinate : temp) {
                 coordinate.setVisible(false);
@@ -102,6 +127,7 @@ public class CreatingInitialMatrix {
                 }
             }
         }
-        return matrix;
     }
+
+
 }
